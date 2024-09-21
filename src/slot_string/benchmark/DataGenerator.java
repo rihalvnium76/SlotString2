@@ -1,9 +1,6 @@
 package slot_string.benchmark;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class DataGenerator {
   private static final char[] CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-".toCharArray();
@@ -13,15 +10,15 @@ public class DataGenerator {
   public Output generate(Input input) {
     this.input = input;
 
-    var texts = genTexts();
-    var slots = genSlotKeysValues();
-    var template = genTemplate(texts, slots);
+    List<String> texts = genTexts();
+    Map<String, Object> slots = genSlotKeysValues();
+    String template = genTemplate(texts, slots);
     return new Output(template, slots);
   }
 
   private String genTemplate(List<String> texts, Map<String, Object> slots) {
-    var sb = new StringBuilder(input.totalTextLength + (2 + input.slotKeyLength.max) * input.slotCount);
-    var keys = slots.keySet().iterator();
+    StringBuilder sb = new StringBuilder(input.totalTextLength + (2 + input.slotKeyLength.max) * input.slotCount);
+    java.util.Iterator<String> keys = slots.keySet().iterator();
     texts.forEach(text -> {
       sb.append(text);
       if (keys.hasNext()) {
@@ -32,8 +29,8 @@ public class DataGenerator {
   }
 
   private List<String> genTexts() {
-    var segment = input.totalTextLength / input.slotCount;
-    var texts = new String[input.slotCount + 1];
+    int segment = input.totalTextLength / input.slotCount;
+    String[] texts = new String[input.slotCount + 1];
     int n = texts.length - 1;
     int remaining = 0;
     for (int i = 0; i < n; ++i) {
@@ -43,11 +40,11 @@ public class DataGenerator {
       remaining = target - consume;
     }
     texts[n] = genString(remaining);
-    return List.of(texts);
+    return Arrays.asList(texts);
   }
 
   private Map<String, Object> genSlotKeysValues() {
-    var ret = new HashMap<String, Object>();
+    HashMap<String, Object> ret = new HashMap<>();
     if (input.numericSlotKey) {
       for (int i = 0; i < input.slotCount; ++i) {
         ret.put(String.valueOf(i), genString(input.slotValueLength.value(input.random)));
@@ -61,24 +58,37 @@ public class DataGenerator {
   }
 
   private String genString(int length) {
-    var sb = new StringBuilder(length);
+    StringBuilder sb = new StringBuilder(length);
     for (int i = 0; i < length; ++i) {
       sb.append(CHARS[input.random.nextInt(CHARS.length)]);
     }
     return sb.toString();
   }
 
-  public record Range(int min, int max) {
-    public Range {
+  public static class Range {
+    public int min;
+    public int max;
+
+    public Range(int min, int max) {
       if (max < min) {
-        int t = min;
-        min = max;
-        max = t;
+        this.min = max;
+        this.max = min;
+      } else {
+        this.min = min;
+        this.max = max;
       }
     }
 
     public int value(Random random) {
       return min + random.nextInt(max - min + 1);
+    }
+
+    @Override
+    public String toString() {
+      return "Range{" +
+        "min=" + min +
+        ", max=" + max +
+        '}';
     }
   }
 
@@ -133,5 +143,13 @@ public class DataGenerator {
     }
   }
 
-  public record Output(String template, Map<String, Object> values) {}
+  public static class Output {
+    public String template;
+    public Map<String, Object> values;
+
+    public Output(String template, Map<String, Object> values) {
+      this.template = template;
+      this.values = values;
+    }
+  }
 }

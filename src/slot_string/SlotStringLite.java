@@ -2,6 +2,7 @@ package slot_string;
 
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,7 +43,11 @@ public class SlotStringLite {
   }
 
   public static void main(String[] args) {
-    System.out.println(format("0 {A} {B} {C} {{D}} {{{{E}}}} {{{{{{F}}}}}} {} 9", Map.of("A", "1", "B", 2, "C", new BigDecimal("1.2E+3"))));
+    Map<String, Object> values1 = new HashMap<>();
+    values1.put("A", "1");
+    values1.put("B", 2);
+    values1.put("C", new BigDecimal("1.2E+3"));
+    System.out.println(format("0 {A} {B} {C} {{D}} {{{{E}}}} {{{{{{F}}}}}} {} 9", values1));
     System.out.println(format("{A}{{B}}{}", Collections.singletonMap("A", "{{1}}")));
   }
 }

@@ -71,7 +71,7 @@ public class SlotString {
       if (type == TEXT_TYPE) {
         res.append(text);
       } else if (type == KEY_TYPE) {
-        String val = asString(text, vars);
+        String val = asString(vars, text);
         if (val != null && !val.isEmpty()) {
           res.append(val);
         }
@@ -113,7 +113,7 @@ public class SlotString {
   }
 
   private void parseQformat(Map<String, Object> vars) {
-    String val = asString(key.toString(), vars);
+    String val = asString(vars, key.toString());
     if (val != null && !val.isEmpty()) {
       res.append(val);
     }
@@ -131,7 +131,7 @@ public class SlotString {
     key.setLength(0);
   }
 
-  protected String asString(String key, Map<String, Object> vars) {
+  protected String asString(Map<String, Object> vars, String key) {
     Object val = vars.get(key);
     if (val == null) {
       return "";

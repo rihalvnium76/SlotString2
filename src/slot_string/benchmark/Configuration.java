@@ -6,5 +6,5 @@ public class Configuration {
   public static final int TOTAL_TEXT_LENGTH = 6000;
   public static final int SLOT_COUNT = 30;
   public static final DataGenerator.Range SLOT_KEY_LENGTH = new DataGenerator.Range(3, 22);
-  public static final DataGenerator.Range SLOT_VALUE_LENGTH = new DataGenerator.Range(4, (int) (TOTAL_TEXT_LENGTH * 1.5f));
+  public static final DataGenerator.Range SLOT_VALUE_LENGTH = new DataGenerator.Range(4, TOTAL_TEXT_LENGTH / 2);
 }

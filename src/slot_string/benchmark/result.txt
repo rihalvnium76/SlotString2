@@ -1,22 +1,107 @@
 [D] Liberica OpenJDK 64-Bit Server VM (build 21.0.3+12-LTS, mixed mode, sharing)
+
+[D] Java(TM) SE Runtime Environment (build 1.8.0_221-b11)
+[D] SDK: 8
 [D] VM Options: -Xmx1G
 [D] Benchmark Configurations:
   - SEED: 479593221892830234
   - ITERATIONS: 100000
   - TOTAL_TEXT_LENGTH: 6000
   - SLOT_COUNT: 30
-  - SLOT_KEY_LENGTH: Range[min=3, max=22]
-  - SLOT_VALUE_LENGTH: Range[min=4, max=9000]
+  - SLOT_KEY_LENGTH: Range{min=3, max=22}
+  - SLOT_VALUE_LENGTH: Range{min=4, max=3000}
+[D] SlotStringLite.format() : use StringBuffer
 [I] 准备测试数据
 [I] 开始 索引占位符替换 性能基准测试
-  - MessageFormat.format() 耗时（单位 ns/iter）：38969
-  - SlotStringLite.format() 耗时（单位 ns/iter）：619398
-  - 多重 String.replace() 耗时（单位 ns/iter）：361736
-  - SlotString.qformat() 耗时（单位 ns/iter）：41498
-  - SlotString.format() 耗时（单位 ns/iter）：21873
+  - MessageFormat.format() 耗时（单位 ns/iter）：60522
+  - SlotStringLite.format() 耗时（单位 ns/iter）：279600
+  - 多重 String.replace() 耗时（单位 ns/iter）：3500764
+  - SlotString.qformat() 耗时（单位 ns/iter）：32110
+  - SlotString.format() 耗时（单位 ns/iter）：15414
 [I] 开始 命名占位符替换 性能基准测试
   - MessageFormat.format() 不支持该特性
-  - SlotStringLite.format() 耗时（单位 ns/iter）：628951
-  - 多重 String.replace() 耗时（单位 ns/iter）：369458
-  - SlotString.qformat() 耗时（单位 ns/iter）：50886
-  - SlotString.format() 耗时（单位 ns/iter）：24482
+  - SlotStringLite.format() 耗时（单位 ns/iter）：304741
+  - 多重 String.replace() 耗时（单位 ns/iter）：963926
+  - SlotString.qformat() 耗时（单位 ns/iter）：35890
+  - SlotString.format() 耗时（单位 ns/iter）：16256
+
+=====
+
+[D] Liberica OpenJDK 64-Bit Server VM (build 21.0.3+12-LTS, mixed mode, sharing)
+[D] SDK: 8
+[D] VM Options: -Xmx1G
+[D] Benchmark Configurations:
+  - SEED: 479593221892830234
+  - ITERATIONS: 100000
+  - TOTAL_TEXT_LENGTH: 6000
+  - SLOT_COUNT: 30
+  - SLOT_KEY_LENGTH: Range{min=3, max=22}
+  - SLOT_VALUE_LENGTH: Range{min=4, max=3000}
+[D] SlotStringLite.format() : use StringBuffer
+[I] 准备测试数据
+[I] 开始 索引占位符替换 性能基准测试
+  - MessageFormat.format() 耗时（单位 ns/iter）：38154
+  - SlotStringLite.format() 耗时（单位 ns/iter）：901028
+  - 多重 String.replace() 耗时（单位 ns/iter）：131765
+  - SlotString.qformat() 耗时（单位 ns/iter）：31383
+  - SlotString.format() 耗时（单位 ns/iter）：8060
+[I] 开始 命名占位符替换 性能基准测试
+  - MessageFormat.format() 不支持该特性
+  - SlotStringLite.format() 耗时（单位 ns/iter）：951109
+  - 多重 String.replace() 耗时（单位 ns/iter）：141274
+  - SlotString.qformat() 耗时（单位 ns/iter）：28890
+  - SlotString.format() 耗时（单位 ns/iter）：8483
+
+=====
+
+[D] Liberica OpenJDK 64-Bit Server VM (build 21.0.3+12-LTS, mixed mode, sharing)
+[D] SDK: 21
+[D] VM Options: -Xmx1G
+[D] Benchmark Configurations:
+  - SEED: 479593221892830234
+  - ITERATIONS: 100000
+  - TOTAL_TEXT_LENGTH: 6000
+  - SLOT_COUNT: 30
+  - SLOT_KEY_LENGTH: Range{min=3, max=22}
+  - SLOT_VALUE_LENGTH: Range{min=4, max=3000}
+[D] SlotStringLite.format() : use StringBuffer
+[I] 准备测试数据
+[I] 开始 索引占位符替换 性能基准测试
+  - MessageFormat.format() 耗时（单位 ns/iter）：40142
+  - SlotStringLite.format() 耗时（单位 ns/iter）：840913
+  - 多重 String.replace() 耗时（单位 ns/iter）：131936
+  - SlotString.qformat() 耗时（单位 ns/iter）：27929
+  - SlotString.format() 耗时（单位 ns/iter）：8095
+[I] 开始 命名占位符替换 性能基准测试
+  - MessageFormat.format() 不支持该特性
+  - SlotStringLite.format() 耗时（单位 ns/iter）：901544
+  - 多重 String.replace() 耗时（单位 ns/iter）：141006
+  - SlotString.qformat() 耗时（单位 ns/iter）：34493
+  - SlotString.format() 耗时（单位 ns/iter）：8541
+
+=====
+
+[D] Liberica OpenJDK 64-Bit Server VM (build 21.0.3+12-LTS, mixed mode, sharing)
+[D] SDK: 21
+[D] VM Options: -Xmx1G
+[D] Benchmark Configurations:
+  - SEED: 479593221892830234
+  - ITERATIONS: 100000
+  - TOTAL_TEXT_LENGTH: 6000
+  - SLOT_COUNT: 30
+  - SLOT_KEY_LENGTH: Range{min=3, max=22}
+  - SLOT_VALUE_LENGTH: Range{min=4, max=3000}
+[D] SlotStringLite.format() : use StringBuilder
+[I] 准备测试数据
+[I] 开始 索引占位符替换 性能基准测试
+  - MessageFormat.format() 耗时（单位 ns/iter）：38155
+  - SlotStringLite.format() 耗时（单位 ns/iter）：293766
+  - 多重 String.replace() 耗时（单位 ns/iter）：131769
+  - SlotString.qformat() 耗时（单位 ns/iter）：27266
+  - SlotString.format() 耗时（单位 ns/iter）：8054
+[I] 开始 命名占位符替换 性能基准测试
+  - MessageFormat.format() 不支持该特性
+  - SlotStringLite.format() 耗时（单位 ns/iter）：307748
+  - 多重 String.replace() 耗时（单位 ns/iter）：141113
+  - SlotString.qformat() 耗时（单位 ns/iter）：34134
+  - SlotString.format() 耗时（单位 ns/iter）：8475
