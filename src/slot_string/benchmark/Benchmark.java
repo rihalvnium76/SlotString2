@@ -11,8 +11,8 @@ import java.util.Random;
 public class Benchmark {
 
   public static void main(String[] args) {
-    System.out.println("[D] Liberica OpenJDK 64-Bit Server VM (build 21.0.3+12-LTS, mixed mode, sharing)");
-    System.out.println("[D] SDK: 21");
+    System.out.println("[D] Java(TM) SE Runtime Environment (build 1.8.0_221-b11)");
+    System.out.println("[D] SDK: 8");
     System.out.println("[D] VM Options: -Xmx1G");
     System.out.println("[D] Benchmark Configurations:");
     System.out.println("  - SEED: " + Configuration.SEED);
@@ -21,7 +21,7 @@ public class Benchmark {
     System.out.println("  - SLOT_COUNT: " + Configuration.SLOT_COUNT);
     System.out.println("  - SLOT_KEY_LENGTH: " + Configuration.SLOT_KEY_LENGTH);
     System.out.println("  - SLOT_VALUE_LENGTH: " + Configuration.SLOT_VALUE_LENGTH);
-    System.out.println("[D] SlotStringLite.format() : use StringBuilder");
+    System.out.println("[D] SlotStringLite.format() : use StringBuffer");
     System.out.println("[I] 准备测试数据");
 
     DataGenerator dataGenerator = new DataGenerator();
@@ -29,6 +29,8 @@ public class Benchmark {
     DataGenerator.Output numericSlots = dataGenerator.generate(genConfig(true));
     // 命名占位符
     DataGenerator.Output namedSlots = dataGenerator.generate(genConfig(false));
+    // C风格占位符
+    DataGenerator.Output cStyleSlots = dataGenerator.generate(genConfig(true).setcStyleSlot(true));
 
     long time;
     DataGenerator.Output targetOutput;
@@ -36,7 +38,7 @@ public class Benchmark {
     System.out.println("[I] 开始 索引占位符替换 性能基准测试");
 
     targetOutput = numericSlots;
-    time = benchmarkMessageFormat(targetOutput.template, targetOutput.values.keySet().toArray());
+    time = benchmarkMessageFormat(targetOutput.template, targetOutput.values.values().toArray());
     System.out.println("  - MessageFormat.format() 耗时（单位 ns/iter）：" + time);
     time = benchmarkSlotStringLite(targetOutput.template, targetOutput.values);
     System.out.println("  - SlotStringLite.format() 耗时（单位 ns/iter）：" + time);
@@ -46,6 +48,7 @@ public class Benchmark {
     System.out.println("  - SlotString.qformat() 耗时（单位 ns/iter）：" + time);
     time = benchmarkSlotStringFormat(targetOutput.template, targetOutput.values);
     System.out.println("  - SlotString.format() 耗时（单位 ns/iter）：" + time);
+    System.out.println("  - String.format() 不支持该特性");
 
     System.out.println("[I] 开始 命名占位符替换 性能基准测试");
 
@@ -59,6 +62,18 @@ public class Benchmark {
     System.out.println("  - SlotString.qformat() 耗时（单位 ns/iter）：" + time);
     time = benchmarkSlotStringFormat(targetOutput.template, targetOutput.values);
     System.out.println("  - SlotString.format() 耗时（单位 ns/iter）：" + time);
+    System.out.println("  - String.format() 不支持该特性");
+
+    System.out.println("[I] 开始 C 风格占位符替换 性能基准测试");
+
+    targetOutput = cStyleSlots;
+    System.out.println("  - MessageFormat.format() 不支持该特性");
+    System.out.println("  - SlotStringLite.format() 不支持该特性");
+    System.out.println("  - 多重 String.replace() 不支持该特性");
+    System.out.println("  - SlotString.qformat() 不支持该特性");
+    System.out.println("  - SlotString.format() 不支持该特性");
+    time = benchmarkStringFormat(targetOutput.template, targetOutput.values.values().toArray());
+    System.out.println("  - String.format() 耗时（单位 ns/iter）：" + time);
   }
 
   private static DataGenerator.Input genConfig(boolean numericKey) {
@@ -142,6 +157,19 @@ public class Benchmark {
     SlotString ss = new SlotString(template);
     for (int i = 0; i < Configuration.ITERATIONS; ++i) {
       never = ss.format(values);
+    }
+    long endTime = System.nanoTime();
+    if (System.currentTimeMillis() == Long.MIN_VALUE + 1L) {
+      System.out.println(never);
+    }
+    return (endTime - startTime) / Configuration.ITERATIONS;
+  }
+
+  private static long benchmarkStringFormat(String template, Object[] values) {
+    String never = null;
+    long startTime = System.nanoTime();
+    for (int i = 0; i < Configuration.ITERATIONS; ++i) {
+      never = String.format(template, values);
     }
     long endTime = System.nanoTime();
     if (System.currentTimeMillis() == Long.MIN_VALUE + 1L) {

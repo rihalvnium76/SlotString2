@@ -19,7 +19,7 @@ public class SlotStringLite {
     }
 
     Matcher matcher = SLOT.matcher(template);
-    StringBuilder sb = new StringBuilder(template.length());
+    StringBuffer sb = new StringBuffer(template.length());
     while (matcher.find()) {
       String slot = matcher.group();
       if (slot.length() == 2 && slot.charAt(0) == slot.charAt(1)) {

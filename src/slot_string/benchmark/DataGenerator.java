@@ -18,11 +18,16 @@ public class DataGenerator {
 
   private String genTemplate(List<String> texts, Map<String, Object> slots) {
     StringBuilder sb = new StringBuilder(input.totalTextLength + (2 + input.slotKeyLength.max) * input.slotCount);
-    java.util.Iterator<String> keys = slots.keySet().iterator();
+    Iterator<String> keys = slots.keySet().iterator();
     texts.forEach(text -> {
       sb.append(text);
       if (keys.hasNext()) {
-        sb.append('{').append(keys.next()).append('}');
+        if (input.cStyleSlot) {
+          sb.append("%s");
+          keys.next();
+        } else {
+          sb.append('{').append(keys.next()).append('}');
+        }
       }
     });
     return sb.toString();
@@ -99,6 +104,7 @@ public class DataGenerator {
     public Range slotKeyLength;
     public boolean numericSlotKey;
     public Range slotValueLength;
+    public boolean cStyleSlot;
 
     public Input setRandom(Random random) {
       this.random = random;
@@ -130,6 +136,11 @@ public class DataGenerator {
       return this;
     }
 
+    public Input setcStyleSlot(boolean cStyleSlot) {
+      this.cStyleSlot = cStyleSlot;
+      return this;
+    }
+
     @Override
     public String toString() {
       return "Input{" +
@@ -139,6 +150,7 @@ public class DataGenerator {
         ", slotKeyLength=" + slotKeyLength +
         ", numericSlotKey=" + numericSlotKey +
         ", slotValueLength=" + slotValueLength +
+        ", cStyleSlot=" + cStyleSlot +
         '}';
     }
   }

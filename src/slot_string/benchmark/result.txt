@@ -1,5 +1,3 @@
-[D] Liberica OpenJDK 64-Bit Server VM (build 21.0.3+12-LTS, mixed mode, sharing)
-
 [D] Java(TM) SE Runtime Environment (build 1.8.0_221-b11)
 [D] SDK: 8
 [D] VM Options: -Xmx1G
@@ -13,17 +11,26 @@
 [D] SlotStringLite.format() : use StringBuffer
 [I] 准备测试数据
 [I] 开始 索引占位符替换 性能基准测试
-  - MessageFormat.format() 耗时（单位 ns/iter）：60522
-  - SlotStringLite.format() 耗时（单位 ns/iter）：279600
-  - 多重 String.replace() 耗时（单位 ns/iter）：3500764
-  - SlotString.qformat() 耗时（单位 ns/iter）：32110
-  - SlotString.format() 耗时（单位 ns/iter）：15414
+  - MessageFormat.format() 耗时（单位 ns/iter）：107309
+  - SlotStringLite.format() 耗时（单位 ns/iter）：276781
+  - 多重 String.replace() 耗时（单位 ns/iter）：3641320
+  - SlotString.qformat() 耗时（单位 ns/iter）：34961
+  - SlotString.format() 耗时（单位 ns/iter）：15032
+  - String.format() 不支持该特性
 [I] 开始 命名占位符替换 性能基准测试
   - MessageFormat.format() 不支持该特性
-  - SlotStringLite.format() 耗时（单位 ns/iter）：304741
-  - 多重 String.replace() 耗时（单位 ns/iter）：963926
-  - SlotString.qformat() 耗时（单位 ns/iter）：35890
-  - SlotString.format() 耗时（单位 ns/iter）：16256
+  - SlotStringLite.format() 耗时（单位 ns/iter）：290167
+  - 多重 String.replace() 耗时（单位 ns/iter）：1053786
+  - SlotString.qformat() 耗时（单位 ns/iter）：34086
+  - SlotString.format() 耗时（单位 ns/iter）：16142
+  - String.format() 不支持该特性
+[I] 开始 C 风格占位符替换 性能基准测试
+  - MessageFormat.format() 不支持该特性
+  - SlotStringLite.format() 不支持该特性
+  - 多重 String.replace() 不支持该特性
+  - SlotString.qformat() 不支持该特性
+  - SlotString.format() 不支持该特性
+  - String.format() 耗时（单位 ns/iter）：75688
 
 =====
 
@@ -40,17 +47,26 @@
 [D] SlotStringLite.format() : use StringBuffer
 [I] 准备测试数据
 [I] 开始 索引占位符替换 性能基准测试
-  - MessageFormat.format() 耗时（单位 ns/iter）：38154
-  - SlotStringLite.format() 耗时（单位 ns/iter）：901028
-  - 多重 String.replace() 耗时（单位 ns/iter）：131765
-  - SlotString.qformat() 耗时（单位 ns/iter）：31383
-  - SlotString.format() 耗时（单位 ns/iter）：8060
+  - MessageFormat.format() 耗时（单位 ns/iter）：68782
+  - SlotStringLite.format() 耗时（单位 ns/iter）：890587
+  - 多重 String.replace() 耗时（单位 ns/iter）：132296
+  - SlotString.qformat() 耗时（单位 ns/iter）：31503
+  - SlotString.format() 耗时（单位 ns/iter）：8017
+  - String.format() 不支持该特性
 [I] 开始 命名占位符替换 性能基准测试
   - MessageFormat.format() 不支持该特性
-  - SlotStringLite.format() 耗时（单位 ns/iter）：951109
-  - 多重 String.replace() 耗时（单位 ns/iter）：141274
-  - SlotString.qformat() 耗时（单位 ns/iter）：28890
-  - SlotString.format() 耗时（单位 ns/iter）：8483
+  - SlotStringLite.format() 耗时（单位 ns/iter）：955446
+  - 多重 String.replace() 耗时（单位 ns/iter）：141307
+  - SlotString.qformat() 耗时（单位 ns/iter）：29603
+  - SlotString.format() 耗时（单位 ns/iter）：8567
+  - String.format() 不支持该特性
+[I] 开始 C 风格占位符替换 性能基准测试
+  - MessageFormat.format() 不支持该特性
+  - SlotStringLite.format() 不支持该特性
+  - 多重 String.replace() 不支持该特性
+  - SlotString.qformat() 不支持该特性
+  - SlotString.format() 不支持该特性
+  - String.format() 耗时（单位 ns/iter）：25438
 
 =====
 
@@ -67,17 +83,26 @@
 [D] SlotStringLite.format() : use StringBuffer
 [I] 准备测试数据
 [I] 开始 索引占位符替换 性能基准测试
-  - MessageFormat.format() 耗时（单位 ns/iter）：40142
-  - SlotStringLite.format() 耗时（单位 ns/iter）：840913
-  - 多重 String.replace() 耗时（单位 ns/iter）：131936
-  - SlotString.qformat() 耗时（单位 ns/iter）：27929
-  - SlotString.format() 耗时（单位 ns/iter）：8095
+  - MessageFormat.format() 耗时（单位 ns/iter）：63335
+  - SlotStringLite.format() 耗时（单位 ns/iter）：841650
+  - 多重 String.replace() 耗时（单位 ns/iter）：131669
+  - SlotString.qformat() 耗时（单位 ns/iter）：28134
+  - SlotString.format() 耗时（单位 ns/iter）：7978
+  - String.format() 不支持该特性
 [I] 开始 命名占位符替换 性能基准测试
   - MessageFormat.format() 不支持该特性
-  - SlotStringLite.format() 耗时（单位 ns/iter）：901544
-  - 多重 String.replace() 耗时（单位 ns/iter）：141006
-  - SlotString.qformat() 耗时（单位 ns/iter）：34493
-  - SlotString.format() 耗时（单位 ns/iter）：8541
+  - SlotStringLite.format() 耗时（单位 ns/iter）：900533
+  - 多重 String.replace() 耗时（单位 ns/iter）：141057
+  - SlotString.qformat() 耗时（单位 ns/iter）：34770
+  - SlotString.format() 耗时（单位 ns/iter）：8470
+  - String.format() 不支持该特性
+[I] 开始 C 风格占位符替换 性能基准测试
+  - MessageFormat.format() 不支持该特性
+  - SlotStringLite.format() 不支持该特性
+  - 多重 String.replace() 不支持该特性
+  - SlotString.qformat() 不支持该特性
+  - SlotString.format() 不支持该特性
+  - String.format() 耗时（单位 ns/iter）：25319
 
 =====
 
@@ -94,14 +119,23 @@
 [D] SlotStringLite.format() : use StringBuilder
 [I] 准备测试数据
 [I] 开始 索引占位符替换 性能基准测试
-  - MessageFormat.format() 耗时（单位 ns/iter）：38155
-  - SlotStringLite.format() 耗时（单位 ns/iter）：293766
-  - 多重 String.replace() 耗时（单位 ns/iter）：131769
-  - SlotString.qformat() 耗时（单位 ns/iter）：27266
-  - SlotString.format() 耗时（单位 ns/iter）：8054
+  - MessageFormat.format() 耗时（单位 ns/iter）：63491
+  - SlotStringLite.format() 耗时（单位 ns/iter）：296640
+  - 多重 String.replace() 耗时（单位 ns/iter）：131779
+  - SlotString.qformat() 耗时（单位 ns/iter）：27759
+  - SlotString.format() 耗时（单位 ns/iter）：7969
+  - String.format() 不支持该特性
 [I] 开始 命名占位符替换 性能基准测试
   - MessageFormat.format() 不支持该特性
-  - SlotStringLite.format() 耗时（单位 ns/iter）：307748
-  - 多重 String.replace() 耗时（单位 ns/iter）：141113
-  - SlotString.qformat() 耗时（单位 ns/iter）：34134
-  - SlotString.format() 耗时（单位 ns/iter）：8475
+  - SlotStringLite.format() 耗时（单位 ns/iter）：308039
+  - 多重 String.replace() 耗时（单位 ns/iter）：141247
+  - SlotString.qformat() 耗时（单位 ns/iter）：35345
+  - SlotString.format() 耗时（单位 ns/iter）：8652
+  - String.format() 不支持该特性
+[I] 开始 C 风格占位符替换 性能基准测试
+  - MessageFormat.format() 不支持该特性
+  - SlotStringLite.format() 不支持该特性
+  - 多重 String.replace() 不支持该特性
+  - SlotString.qformat() 不支持该特性
+  - SlotString.format() 不支持该特性
+  - String.format() 耗时（单位 ns/iter）：25593
