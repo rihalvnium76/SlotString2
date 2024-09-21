@@ -1,0 +1,22 @@
+[D] Liberica OpenJDK 64-Bit Server VM (build 21.0.3+12-LTS, mixed mode, sharing)
+[D] VM Options: -Xmx1G
+[D] Benchmark Configurations:
+  - SEED: 479593221892830234
+  - ITERATIONS: 100000
+  - TOTAL_TEXT_LENGTH: 6000
+  - SLOT_COUNT: 30
+  - SLOT_KEY_LENGTH: Range[min=3, max=22]
+  - SLOT_VALUE_LENGTH: Range[min=4, max=9000]
+[I] 准备测试数据
+[I] 开始 索引占位符替换 性能基准测试
+  - MessageFormat.format() 耗时（单位 ns/iter）：38969
+  - SlotStringLite.format() 耗时（单位 ns/iter）：619398
+  - 多重 String.replace() 耗时（单位 ns/iter）：361736
+  - SlotString.qformat() 耗时（单位 ns/iter）：41498
+  - SlotString.format() 耗时（单位 ns/iter）：21873
+[I] 开始 命名占位符替换 性能基准测试
+  - MessageFormat.format() 不支持该特性
+  - SlotStringLite.format() 耗时（单位 ns/iter）：628951
+  - 多重 String.replace() 耗时（单位 ns/iter）：369458
+  - SlotString.qformat() 耗时（单位 ns/iter）：50886
+  - SlotString.format() 耗时（单位 ns/iter）：24482
