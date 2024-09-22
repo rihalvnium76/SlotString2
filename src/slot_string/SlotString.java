@@ -6,37 +6,34 @@ import java.util.Collections;
 import java.util.Map;
 
 public class SlotString {
-  private static final Integer TEXT_TYPE = 0;
-  private static final Integer KEY_TYPE = 1;
+  private enum Type {
+    TEXT, KEY
+  }
 
   private final StringBuilder res = new StringBuilder();
   private final StringBuilder key = new StringBuilder();
   private final ArrayList<String> texts;
-  private final ArrayList<Integer> types;
+  private final ArrayList<Type> types;
 
   public SlotString() {
     texts = null;
     types = null;
   }
   public SlotString(String pattern) {
-    if (pattern == null) {
+    if (pattern == null || pattern.isEmpty()) {
       texts = null;
       types = null;
-      return;
+    } else {
+      texts = new ArrayList<>();
+      types = new ArrayList<>();
+      compile(pattern);
     }
-    if (pattern.isEmpty()) {
-      texts = new ArrayList<>(Collections.singletonList(""));
-      types = new ArrayList<>(Collections.singletonList(TEXT_TYPE));
-      return;
-    }
-    texts = new ArrayList<>();
-    types = new ArrayList<>();
-    compile(pattern);
+
   }
 
   public String qformat(String pattern, Map<String, Object> vars) {
     if (pattern == null || pattern.isEmpty()) {
-      return pattern;
+      return "";
     }
     if (vars == null) {
       parse(pattern, Collections.emptyMap());
@@ -53,24 +50,24 @@ public class SlotString {
     parse(pattern, null);
     if (res.length() != 0) {
       texts.add(res.toString());
-      types.add(TEXT_TYPE);
+      types.add(Type.TEXT);
     }
-    texts.trimToSize();
-    types.trimToSize();
     res.setLength(0);
     key.setLength(0);
+    texts.trimToSize();
+    types.trimToSize();
   }
 
   public String format(Map<String, Object> vars) {
-    if (types == null) {
-      return null;
+    if (types == null || types.isEmpty()) {
+      return "";
     }
     for (int i = 0; i < types.size(); ++i) {
-      Integer type = types.get(i);
+      Type type = types.get(i);
       String text = texts.get(i);
-      if (type == TEXT_TYPE) {
+      if (type == Type.TEXT) {
         res.append(text);
-      } else if (type == KEY_TYPE) {
+      } else if (type == Type.KEY) {
         String val = asString(vars, text);
         if (val != null && !val.isEmpty()) {
           res.append(val);
@@ -123,11 +120,11 @@ public class SlotString {
   private void parseCompile() {
     if (res.length() != 0) {
       texts.add(res.toString());
-      types.add(TEXT_TYPE);
+      types.add(Type.TEXT);
       res.setLength(0);
     }
     texts.add(key.toString());
-    types.add(KEY_TYPE);
+    types.add(Type.KEY);
     key.setLength(0);
   }
 
