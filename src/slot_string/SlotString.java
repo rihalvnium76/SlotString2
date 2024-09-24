@@ -28,7 +28,6 @@ public class SlotString {
       types = new ArrayList<>();
       compile(pattern);
     }
-
   }
 
   public String qformat(String pattern, Map<String, Object> vars) {
