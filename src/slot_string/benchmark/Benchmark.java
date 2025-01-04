@@ -3,6 +3,7 @@ package slot_string.benchmark;
 import slot_string.SlotString;
 import slot_string.SlotStringLite;
 
+import java.lang.management.ManagementFactory;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.util.Map;
@@ -11,9 +12,14 @@ import java.util.Random;
 public class Benchmark {
 
   public static void main(String[] args) {
-    System.out.println("[D] Java(TM) SE Runtime Environment (build 1.8.0_221-b11)");
-    System.out.println("[D] SDK: 8");
-    System.out.println("[D] VM Options: -Xmx1G");
+    System.out.println("[D] " + System.getProperty("java.vendor")
+      + " " + System.getProperty("java.runtime.name")
+      + " (build " + System.getProperty("java.runtime.version")
+      + ", " + System.getProperty("java.vm.info") + ")");
+    System.out.println("[D] SDK: " + System.getProperty("java.specification.version")
+      + " (Class Version: " + System.getProperty("java.class.version") + ")");
+    System.out.println("[D] VM Options: "
+      + String.join(" ", ManagementFactory.getRuntimeMXBean().getInputArguments()));
     System.out.println("[D] Benchmark Configurations:");
     System.out.println("  - SEED: " + Configuration.SEED);
     System.out.println("  - ITERATIONS: " + Configuration.ITERATIONS);
